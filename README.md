@@ -1,7 +1,7 @@
 # multibot 
 
-**multibot** is an incredibly simple libremetaverse bot designed to help QA
-test mass region crossings.
+**multibot** is an incredibly simple libremetaverse bot designed show how to
+use dotnet + nuget with libremetaverse.
 
 ## Configuration
 
