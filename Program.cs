@@ -8,9 +8,6 @@ namespace Multibot
     {
         [Option('c', "config", Required = true, HelpText = "Path to YAML config file.")]
         public required string ConfigFile { get; set; }
-
-        [Option('u', "login-url", Required = false, HelpText = "Login URL.")]
-        public string? LoginUrl { get; set; }
     }
 
     class Program
@@ -21,7 +18,7 @@ namespace Multibot
                 .WithParsedAsync(o => {
                     using var reader = new StreamReader(o.ConfigFile);
                     var deserializer = new DeserializerBuilder()
-                        .WithNamingConvention(LowerCaseNamingConvention.Instance)
+                        .WithNamingConvention(UnderscoredNamingConvention.Instance)
                         .Build();
 
                     // Load config
@@ -32,6 +29,8 @@ namespace Multibot
                     var bots = new List<Multibot>();
                     foreach (var creds in cfg.Bots)
                     {
+                        creds.LoginUrl = cfg.LoginUrl;
+                        creds.LoginLocation = cfg.LoginLocation;
                         var bot = new Multibot(creds, admins);
                         bot.Start();
                         bots.Add(bot);

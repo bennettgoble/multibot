@@ -14,16 +14,17 @@ namespace Multibot
         private LoginParams loginParams;
         private List<string> admins;
 
-        public Multibot(BotCreds credentials, List<string> admins, string? loginUrl = null)
+        public Multibot(BotCreds credentials, List<string> admins)
         {
             client = new GridClient();
             client.Settings.MULTIPLE_SIMS = true;
 
-            loginParams = new LoginParams(client, (LoginCredential)credentials, "", "");
-
-            if (loginUrl != null) {
-                loginParams.URI = loginUrl;
-            }
+            loginParams = new LoginParams(client, (LoginCredential)credentials, "", "")
+            {
+                AgreeToTos = true
+            };
+            if (credentials.LoginUrl != null) { loginParams.URI = credentials.LoginUrl; }
+            if (credentials.LoginLocation != null) { loginParams.LoginLocation = credentials.LoginLocation; }
 
             this.admins = admins;
 

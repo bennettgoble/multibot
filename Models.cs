@@ -6,6 +6,10 @@ namespace Multibot
     {
         public List<string>? Admins { get; set; }
         public required List<BotCreds> Bots { get; set; }
+
+        public string? LoginUrl { get; set; }
+
+        public string? LoginLocation { get; set; }
     }
 
     public class BotCreds
@@ -13,6 +17,10 @@ namespace Multibot
         public required string First { get; set; }
         public required string Last { get; set; }
         public required string Pass { get; set; }
+
+        public string? LoginUrl { get; set; }
+
+        public string? LoginLocation { get; set; }
 
         public static explicit operator LoginCredential(BotCreds creds)
         {
