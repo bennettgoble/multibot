@@ -8,6 +8,9 @@ namespace Multibot
     {
         [Option('c', "config", Required = true, HelpText = "Path to YAML config file.")]
         public required string ConfigFile { get; set; }
+
+        [Option('u', "login-url", Required = false, HelpText = "Login URL.")]
+        public string? LoginUrl { get; set; }
     }
 
     class Program
